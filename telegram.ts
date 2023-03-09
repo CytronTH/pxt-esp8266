@@ -51,7 +51,7 @@ namespace esp8266 {
         if (sendCommand("AT+CIPSTART=\"TCP\",\"" + TELEGRAM_API_URL + "\",443", "OK", 10000) == false) return
 
         // Construct the data to send.
-        let data = "POST /api/notify Content-Type: application/x-www-form-urlencoded Authorization: Bearer " + formatUrl(toKen) + " message=" + formatUrl(mesSage)
+        let data = "POST /api/notify HTTP/1.1\r\nHost:https://notify-api.line.me/api/notify\r\nContent-Type: application/x-www-form-urlencoded\r\nAuthorization: Bearer EfsT3yVHLqHeJgMFKGBtxz7MeWMEDCt5DX6AzCbs1mr\r\nmessage=hola"
         //data += " HTTP/1.1\r\n"
         //data += "Host: " + TELEGRAM_API_URL + "\r\n"
 
