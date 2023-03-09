@@ -7,7 +7,7 @@
  *******************************************************************************/
 
 // Telegram API url.
-const TELEGRAM_API_URL = "api.telegram.org"
+const TELEGRAM_API_URL = "notify-api.line.me"
 
 namespace esp8266 {
     // Flag to indicate whether the Telegram message was sent successfully.
@@ -31,15 +31,15 @@ namespace esp8266 {
 
     /**
      * Send Telegram message.
-     * @param apiKey Telegram API Key.
-     * @param chatId The chat ID we want to send message to.
+     * @param toKen Telegram API Key.
+     * @param mesSage The chat ID we want to send message to.
      */
     //% subcategory="Telegram"
     //% weight=29
     //% blockGap=8
     //% blockId=esp8266_send_telegram_message
-    //% block="send message to Telegram:|API Key %apiKey|Chat ID %chatId|Message %message"
-    export function sendTelegramMessage(apiKey: string, chatId: string, message: string) {
+    //% block="send message to Telegram:|Token %toKen|Message %mesSage"
+    export function sendTelegramMessage(toKen: string, mesSage: string) {
 
         // Reset the upload successful flag.
         telegramMessageSent = false
@@ -48,10 +48,10 @@ namespace esp8266 {
         if (isWifiConnected() == false) return
 
         // Connect to Telegram. Return if failed.
-        if (sendCommand("AT+CIPSTART=\"SSL\",\"" + TELEGRAM_API_URL + "\",443", "OK", 10000) == false) return
+        if (sendCommand("AT+CIPSTART=\"TCP\",\"" + TELEGRAM_API_URL + "\",443", "OK", 10000) == false) return
 
         // Construct the data to send.
-        let data = "GET /bot" + formatUrl(apiKey) + "/sendMessage?chat_id=" + formatUrl(chatId) + "&text=" + formatUrl(message)
+        let data = "POST /api/notify Content-Type: application/x-www-form-urlencoded Authorization: Bearer " + formatUrl(toKen) + " message=" + formatUrl(mesSage)
         data += " HTTP/1.1\r\n"
         data += "Host: " + TELEGRAM_API_URL + "\r\n"
 
