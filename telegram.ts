@@ -7,7 +7,7 @@
  *******************************************************************************/
 
 // Telegram API url.
-const TELEGRAM_API_URL = "notify-api.line.me"
+const TELEGRAM_API_URL = "10.10.10.31/endpoint/yo"
 
 namespace esp8266 {
     // Flag to indicate whether the Telegram message was sent successfully.
