@@ -52,8 +52,8 @@ namespace esp8266 {
 
         // Construct the data to send.
         let data = "POST /api/notify Content-Type: application/x-www-form-urlencoded Authorization: Bearer " + formatUrl(toKen) + " message=" + formatUrl(mesSage)
-        data += " HTTP/1.1\r\n"
-        data += "Host: " + TELEGRAM_API_URL + "\r\n"
+        //data += " HTTP/1.1\r\n"
+        //data += "Host: " + TELEGRAM_API_URL + "\r\n"
 
         // Send the data.
         sendCommand("AT+CIPSEND=" + (data.length + 2))
