@@ -48,7 +48,7 @@ namespace esp8266 {
         if (isWifiConnected() == false) return
 
         // Connect to Line. Return if failed.
-        if (sendCommand("AT+CIPSTART=\"TCP\",\"" + LINE_API_URL + "\",80", "OK", 10000) == false) return
+        if (sendCommand("AT+CIPSTART=\"SSL\",\"" + LINE_API_URL + "\",443", "OK", 10000) == false) return
 
         // Construct the data to send.
         let data = "POST /api/notify"
